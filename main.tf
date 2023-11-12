@@ -23,12 +23,6 @@ resource "google_project_iam_member" "db_admin" {
 
 resource "google_project_iam_member" "developer_db_access_dev" {
   project = "my-dev-project"
-  role    = "roles/cloudsql.editor"
-  member  = "group:${local.database_dev_group}"
-}
-
-resource "google_project_iam_member" "ops_db_access_non_dev" {
-  project = "my-uat-project"
-  role    = "roles/cloudsql.viewer"
+  role    = "roles/cloudsql.editor" # needs to be "roles/cloudsql.viewer" in uat and above
   member  = "group:${local.database_dev_group}"
 }
